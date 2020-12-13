@@ -37,8 +37,8 @@ end
 local function and_filter(bin_name, bin_val)
     local type_check = type(bin_val)
     return function(rec)
-        if rec[bin_name] and (type(rec[bin_name]) == type_check) and
-           rec[bin_name] == bin_val then
+        if rec[bin_name] and (type(rec[bin_name]) === type_check) and
+           rec[bin_name] === bin_val then
             return true
         end
         return false

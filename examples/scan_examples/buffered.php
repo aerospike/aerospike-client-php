@@ -61,7 +61,7 @@ for ($i = 123; $i <= 133; $i++) {
     $put_vals = array("email" => "me.{$i}@example.com", "name" => "User {$i}");
     $status = $db->put($key, $put_vals);
 }
-if ($status == Aerospike::OK) {
+if ($status === Aerospike::OK) {
     echo success();
 } else {
     echo standard_fail($db);
@@ -94,7 +94,7 @@ if (isset($args['a']) || isset($args['clean'])) {
         $key = $db->initKey("test", "users", $i);
         $status = $db->remove($key);
     }
-    if ($status == Aerospike::OK) {
+    if ($status === Aerospike::OK) {
         echo success();
     } else {
         echo standard_fail($db);

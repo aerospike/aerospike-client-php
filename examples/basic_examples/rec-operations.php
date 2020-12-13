@@ -66,9 +66,9 @@ $put_vals = array(
     "is_senior" => true,
     "positions" => array("Inventor", "Founder", "Lecturer", "Scientist", "Hyper Yeti"));
 $status = $db->put($key, $put_vals, 300, array(Aerospike::OPT_POLICY_EXISTS => Aerospike::POLICY_EXISTS_CREATE));
-if ($status == Aerospike::OK) {
+if ($status === Aerospike::OK) {
     echo success();
-} elseif ($status == Aerospike::ERR_RECORD_EXISTS) {
+} elseif ($status === Aerospike::ERR_RECORD_EXISTS) {
     echo fail("There already is a record at PK={$key['key']} in the set test.characters");
     $needs_force = true;
 } else {
@@ -81,7 +81,7 @@ if ($needs_force) {
     echo colorize("Retrying to insert a record in test.characters at PK=1 using Aerospike::POLICY_EXISTS_IGNORE ≻", 'black', true);
     $start = __LINE__;
     $status = $db->put($key, $put_vals, 300, array(Aerospike::OPT_POLICY_EXISTS => Aerospike::POLICY_EXISTS_IGNORE));
-    if ($status == Aerospike::OK) {
+    if ($status === Aerospike::OK) {
         echo success();
     } else {
         echo standard_fail($db);
@@ -93,7 +93,7 @@ if ($needs_force) {
 echo colorize("Retrieving the record metadata ≻", 'black', true);
 $start = __LINE__;
 $status = $db->exists($key, $meta);
-if ($status == Aerospike::OK) {
+if ($status === Aerospike::OK) {
     echo success();
     var_dump($meta);
 } else {
@@ -106,9 +106,9 @@ $start = __LINE__;
 $current_gen = $meta["generation"];
 $new_bin = array("eyesight"=>"bad");
 $status = $db->put($key, $new_bin, 0, array(Aerospike::OPT_POLICY_GEN=>array(Aerospike::POLICY_GEN_EQ, $current_gen)));
-if ($status == Aerospike::OK) {
+if ($status === Aerospike::OK) {
     echo success();
-} elseif ($status == Aerospike::ERR_RECORD_GENERATION) {
+} elseif ($status === Aerospike::ERR_RECORD_GENERATION) {
     echo fail("The record at PK={$key['key']} has been altered and has a newer generation");
 } else {
     echo standard_fail($db);
@@ -125,7 +125,7 @@ $put_vals = array(
         "Earth" => "Planet Express, New New York",
         "Near Death Star" => "Nobody Knows!"));
 $status = $db->put($key, $put_vals, 300, array(Aerospike::OPT_POLICY_EXISTS => Aerospike::POLICY_EXISTS_UPDATE));
-if ($status == Aerospike::OK) {
+if ($status === Aerospike::OK) {
     echo success();
 } else {
     echo standard_fail($db);
@@ -135,10 +135,10 @@ if (isset($args['a']) || isset($args['annotate'])) display_code(__FILE__, $start
 echo colorize("Getting the record ≻", 'black', true);
 $start = __LINE__;
 $status = $db->get($key, $record);
-if ($status == Aerospike::OK) {
+if ($status === Aerospike::OK) {
     echo success();
     var_dump($record);
-} elseif ($status == Aerospike::ERR_RECORD_NOT_FOUND) {
+} elseif ($status === Aerospike::ERR_RECORD_NOT_FOUND) {
     echo fail("Could not find a user with PK={$key['key']} in the set test.characters");
 } else {
     echo standard_fail($db);
@@ -148,7 +148,7 @@ if (isset($args['a']) || isset($args['annotate'])) display_code(__FILE__, $start
 echo colorize("Touching the record ≻", 'black', true);
 $start = __LINE__;
 $status = $db->touch($key, 500);
-if ($status == Aerospike::OK) {
+if ($status === Aerospike::OK) {
     echo success();
 } else {
     echo standard_fail($db);
@@ -159,7 +159,7 @@ echo colorize("Retrieving record metadata using its digest ≻", 'black', true);
 $start = __LINE__;
 $digest_key = $db->initKey($record['key']['ns'], $record['key']['set'], $record['key']['digest'], true);
 $status = $db->exists($digest_key, $metadata);
-if ($status == Aerospike::OK) {
+if ($status === Aerospike::OK) {
     echo success();
     var_dump($metadata);
 } else {
@@ -171,12 +171,12 @@ if (isset($args['c']) || isset($args['clean'])) {
     echo colorize("Removing the record ≻ ", 'black', true);
     $start = __LINE__;
     $status = $db->remove($key);
-    if ($status == Aerospike::OK) {
+    if ($status === Aerospike::OK) {
         echo success();
     } else {
         echo standard_fail($db);
     }
-    if ($status == Aerospike::OK) {
+    if ($status === Aerospike::OK) {
         echo success();
     } else {
         echo standard_fail($db);

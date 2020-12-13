@@ -69,7 +69,7 @@ if (isset($args['a']) || isset($args['annotate'])) display_code(__FILE__, $start
 echo colorize("Using infoMany() to get the build of each Aerospike cluster node ≻", 'black', true);
 $start = __LINE__;
 $response = $db->infoMany('build');
-if ($response == NULL) {
+if ($response === NULL) {
     echo $db->errorno();
     echo standard_fail($db);
 } else {
@@ -81,7 +81,7 @@ if (isset($args['a']) || isset($args['annotate'])) display_code(__FILE__, $start
 echo colorize("Using getNodes() to fetch the address of all the cluster nodes ≻", 'black', true);
 $start = __LINE__;
 $nodes = $db->getNodes();
-if ($nodes == NULL) {
+if ($nodes === NULL) {
     echo standard_fail($db);
 } else {
     echo success();

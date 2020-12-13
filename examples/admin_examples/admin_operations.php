@@ -59,7 +59,7 @@ echo colorize("Creating a user ≻", 'black', true);
 $start = __LINE__;
 $status = $db->createUser("example_user", "example_pass", array("read"));
 sleep(1);
-if ($status == Aerospike::OK) {
+if ($status === Aerospike::OK) {
     echo success();
 } else {
     echo standard_fail($db);
@@ -70,7 +70,7 @@ echo colorize("Creating a role ≻", 'black', true);
 $start = __LINE__;
 $status = $db->createRole("example_role", array(array("code" => Aerospike::PRIV_READ_WRITE, "ns" => "test", "set" => "demo")));
 sleep(1);
-if ($status == Aerospike::OK) {
+if ($status === Aerospike::OK) {
     echo success();
 } else {
     echo standard_fail($db);
@@ -81,7 +81,7 @@ echo colorize("Query a role before grant privileges ≻", 'black', true);
 $start = __LINE__;
 $status = $db->queryRole("example_role", $privileges);
 sleep(1);
-if ($status == Aerospike::OK) {
+if ($status === Aerospike::OK) {
     echo success();
     var_dump($privileges);
 } else {
@@ -93,7 +93,7 @@ echo colorize("Grant privileges to a role ≻", 'black', true);
 $start = __LINE__;
 $status = $db->grantPrivileges("example_role", array(array("code"=>Aerospike::PRIV_READ_WRITE_UDF)));
 sleep(1);
-if ($status == Aerospike::OK) {
+if ($status === Aerospike::OK) {
     echo success();
 } else {
     echo standard_fail($db);
@@ -104,7 +104,7 @@ echo colorize("Query a role after grant privileges ≻", 'black', true);
 $start = __LINE__;
 $status = $db->queryRole("example_role", $privileges);
 sleep(1);
-if ($status == Aerospike::OK) {
+if ($status === Aerospike::OK) {
     echo success();
     var_dump($privileges);
 } else {
@@ -116,7 +116,7 @@ echo colorize("Revoke privileges from a role ≻", 'black', true);
 $start = __LINE__;
 $status = $db->revokePrivileges("example_role", array(array("code"=>Aerospike::PRIV_READ_WRITE_UDF)));
 sleep(1);
-if ($status == Aerospike::OK) {
+if ($status === Aerospike::OK) {
     echo success();
 } else {
     echo standard_fail($db);
@@ -127,7 +127,7 @@ echo colorize("Query all roles after revoking privileges ≻", 'black', true);
 $start = __LINE__;
 $status = $db->queryRoles($privileges);
 sleep(1);
-if ($status == Aerospike::OK) {
+if ($status === Aerospike::OK) {
     echo success();
     var_dump($privileges);
 } else {
@@ -139,7 +139,7 @@ echo colorize("Grant the role to a user ≻", 'black', true);
 $start = __LINE__;
 $status = $db->grantRoles("example_user", array("example_role"));
 sleep(1);
-if ($status == Aerospike::OK) {
+if ($status === Aerospike::OK) {
     echo success();
 } else {
     echo standard_fail($db);
@@ -150,7 +150,7 @@ echo colorize("Query the user ≻", 'black', true);
 $start = __LINE__;
 $status = $db->queryUser("example_user", $roles);
 sleep(1);
-if ($status == Aerospike::OK) {
+if ($status === Aerospike::OK) {
     echo success();
     var_dump($roles);
 } else {
@@ -162,7 +162,7 @@ echo colorize("Revoke role from the user ≻", 'black', true);
 $start = __LINE__;
 $status = $db->revokeRoles("example_user", array("example_role"));
 sleep(1);
-if ($status == Aerospike::OK) {
+if ($status === Aerospike::OK) {
     echo success();
 } else {
     echo standard_fail($db);
@@ -173,7 +173,7 @@ echo colorize("Query all users ≻", 'black', true);
 $start = __LINE__;
 $status = $db->queryUsers($roles);
 sleep(1);
-if ($status == Aerospike::OK) {
+if ($status === Aerospike::OK) {
     echo success();
     var_dump($roles);
 } else {
@@ -185,7 +185,7 @@ echo colorize("Drop the role ≻", 'black', true);
 $start = __LINE__;
 $status = $db->dropRole("example_role");
 sleep(1);
-if ($status == Aerospike::OK) {
+if ($status === Aerospike::OK) {
     echo success();
 } else {
     echo standard_fail($db);
@@ -195,7 +195,7 @@ if (isset($args['a']) || isset($args['annotate'])) display_code(__FILE__, $start
 echo colorize("Dropping the user ≻", 'black', true);
 $start = __LINE__;
 $status = $db->dropUser("example_user");
-if ($status == Aerospike::OK) {
+if ($status === Aerospike::OK) {
     echo success();
 } else {
     echo standard_fail($db);

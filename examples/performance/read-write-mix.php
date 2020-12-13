@@ -58,7 +58,7 @@ echo success();
 echo colorize("Clear out the record that may exist at test.performance with PK=1 ≻", 'black', true);
 $key = $db->initKey("test", "performance", "read-write");
 $res = $db->remove($key);
-if ($res == Aerospike::OK) {
+if ($res === Aerospike::OK) {
     echo success();
 } else {
     echo standard_fail($db);
@@ -72,7 +72,7 @@ $kv = array("v" => 1);
 echo colorize("Initialize the record used for the serial put/get performance test ≻", 'black', true);
 $begin = microtime(true);
 $res = $db->put($key, $kv);
-if ($res == Aerospike::OK) {
+if ($res === Aerospike::OK) {
     echo success();
 } else {
     echo fail("Could not initialize the test bin [{$db->errorno()}]: {$db->error()}");
@@ -81,7 +81,7 @@ if ($res == Aerospike::OK) {
 
 echo colorize("Run the mixed read/write performance test ≻", 'black', true);
 for ($num_ops = 1; $num_ops < $total_ops; $num_ops++) {
-    if (($num_ops % $write_every) == 0) {
+    if (($num_ops % $write_every) === 0) {
         $kv['v']++;
         $res = $db->put($key, $kv);
         $writes++;
@@ -101,7 +101,7 @@ for ($num_ops = 1; $num_ops < $total_ops; $num_ops++) {
     }
 }
 $end = microtime(true);
-if (($read_fails == 0) && ($write_fails == 0)) {
+if (($read_fails === 0) && ($write_fails === 0)) {
     echo success();
 } else {
     echo standard_fail($db);

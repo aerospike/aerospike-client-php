@@ -135,13 +135,13 @@ function parse_args() {
                                                "passed"=>TRUE));
         // will ensure a record exists at the given key with the specified bins using the registered serializer callback
         $res = $db->put($key, $put_vals, 100, array(Aerospike::OPT_SERIALIZER => Aerospike::SERIALIZER_USER));
-        if ($res == Aerospike::OK) {
+        if ($res === Aerospike::OK) {
             echo "Record written.\n";
             // get the record using the registered deserializer callback
             $res = $db->get($key, $record);
-            if ($res == Aerospike::OK) {
+            if ($res === Aerospike::OK) {
                 var_dump($record);
-            } elseif ($res == Aerospike::ERR_RECORD_NOT_FOUND) {
+            } elseif ($res === Aerospike::ERR_RECORD_NOT_FOUND) {
                 echo "A user with key ". $key['key']. " does not exist in the database\n";
             } else {
                 echo "[{$db->errorno()}] ".$db->error();

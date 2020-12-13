@@ -78,7 +78,7 @@ if ($res !== Aerospike::OK) {
 $writes++;
 
 for ($num_ops = 1; $num_ops < $total_ops; $num_ops++) {
-    if (($num_ops % $write_every) == 0) {
+    if (($num_ops % $write_every) === 0) {
         $kv['v'] = $num_ops;
         $res = $db->put($key, $kv);
         $writes++;

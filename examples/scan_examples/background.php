@@ -59,7 +59,7 @@ $start = __LINE__;
 $key = $db->initKey("test", "users", 1234);
 $put_vals = array("first_name" => "Peter", "age" => 30);
 $status = $db->put($key, $put_vals);
-if ($status == Aerospike::OK) {
+if ($status === Aerospike::OK) {
     echo success();
 } else {
     echo standard_fail($db);
@@ -71,7 +71,7 @@ $start = __LINE__;
 $key = $db->initKey("test", "users", 2345);
 $put_vals = array("first_name" => "John", "age" => 35);
 $status = $db->put($key, $put_vals);
-if ($status == Aerospike::OK) {
+if ($status === Aerospike::OK) {
     echo success();
 } else {
     echo standard_fail($db);
@@ -83,7 +83,7 @@ $start = __LINE__;
 $key = $db->initKey("test", "users", 3456);
 $put_vals = array("first_name" => "Alex", "age" => 26);
 $status = $db->put($key, $put_vals);
-if ($status == Aerospike::OK) {
+if ($status === Aerospike::OK) {
     echo success();
 } else {
     echo standard_fail($db);
@@ -95,7 +95,7 @@ $start = __LINE__;
 $key = $db->initKey("test", "users", 4567);
 $put_vals = array("first_name" => "Jimmy", "age" => 23);
 $status = $db->put($key, $put_vals);
-if ($status == Aerospike::OK) {
+if ($status === Aerospike::OK) {
     echo success();
 } else {
     echo standard_fail($db);
@@ -108,7 +108,7 @@ $result = array();
 $status = $db->scan("test", "users", function ($record) use (&$result) {
     $result[] = $record['bins'];
 });
-if ($status == Aerospike::OK) {
+if ($status === Aerospike::OK) {
     echo success();
     var_dump($result);
 } else {
@@ -169,7 +169,7 @@ $result = array();
 $status = $db->scan("test", "users", function ($record) use (&$result) {
     $result[] = $record['bins'];
 });
-if ($status == Aerospike::OK) {
+if ($status === Aerospike::OK) {
     echo success();
     var_dump($result);
 } else {
@@ -188,7 +188,7 @@ if (isset($args['c']) || isset($args['clean'])) {
     $status = $db->remove($key);
     $key = $db->initKey("test", "users", 4567);
     $status = $db->remove($key);
-    if ($status == Aerospike::OK) {
+    if ($status === Aerospike::OK) {
         echo success();
     } else {
         echo standard_fail($db);
@@ -198,7 +198,7 @@ if (isset($args['c']) || isset($args['clean'])) {
     echo colorize("De-Registering the UDF module ≻", 'black', true);
     $start = __LINE__;
     $status = $db->deregister("example_scan_udf.lua");
-    if ($status == Aerospike::OK) {
+    if ($status === Aerospike::OK) {
         echo success();
     } else {
         echo standard_fail($db);

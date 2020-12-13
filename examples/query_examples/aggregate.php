@@ -61,9 +61,9 @@ if (!$copied) {
     echo fail("Could not copy the local lua/example_aggregate_udf.lua to ". ini_get('aerospike.udf.lua_user_path'));
 }
 $status = $db->register(ini_get('aerospike.udf.lua_user_path').'/example_aggregate_udf.lua', "example_aggregate_udf.lua");
-if ($status == Aerospike::OK) {
+if ($status === Aerospike::OK) {
     echo success();
-} elseif ($status == Aerospike::ERR_UDF_NOT_FOUND) {
+} elseif ($status === Aerospike::ERR_UDF_NOT_FOUND) {
     echo fail("Could not find the udf file ".ini_get('aerospike.udf.lua_user_path').'/example_aggregate_udf.lua');
 } else {
     echo standard_fail($db);
@@ -77,7 +77,7 @@ echo colorize($lua, 'purple', false);
 echo colorize("Creating a secondary index on the 'age' bin of test.characters ≻", 'black', true);
 $start = __LINE__;
 $status = $db->addIndex("test", "characters", "age", "age_index", Aerospike::INDEX_TYPE_DEFAULT, Aerospike::INDEX_NUMERIC);
-if ($status == Aerospike::OK) {
+if ($status === Aerospike::OK) {
     echo success();
 } else {
     echo standard_fail($db);
@@ -97,7 +97,7 @@ foreach ($characters as $name => $info) {
     $key = $db->initKey("test", "characters", $i++);
     $put_vals = array("name" => $name, "workplace" => $info[0], "age" => $info[1]);
     $status = $db->put($key, $put_vals);
-    if ($status == Aerospike::OK) {
+    if ($status === Aerospike::OK) {
         echo success();
     } else {
         echo standard_fail($db);
@@ -140,7 +140,7 @@ if (isset($args['a']) || isset($args['clean'])) {
         $key = $db->initKey("test", "characters", $i);
         $db->remove($key);
     }
-    if ($status == Aerospike::OK) {
+    if ($status === Aerospike::OK) {
         echo success();
     } else {
         echo standard_fail($db);
@@ -150,7 +150,7 @@ if (isset($args['a']) || isset($args['clean'])) {
     $start = __LINE__;
     echo colorize("Dropping the index ≻", 'black', true);
     $status = $db->dropIndex("test", "age_index");
-    if ($status == Aerospike::OK) {
+    if ($status === Aerospike::OK) {
         echo success();
     } else {
         echo standard_fail($db);
@@ -160,7 +160,7 @@ if (isset($args['a']) || isset($args['clean'])) {
     echo colorize("De-Registering the UDF module ≻", 'black', true);
     $start = __LINE__;
     $status = $db->deregister("example_aggregate_udf.lua");
-    if ($status == Aerospike::OK) {
+    if ($status === Aerospike::OK) {
         echo success();
     } else {
         echo standard_fail($db);

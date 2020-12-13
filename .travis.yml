@@ -2,6 +2,7 @@ language: php
 php:
 - 7.2
 - 7.3
+- 7.4
 os:
 - linux
 addons:
@@ -37,6 +38,8 @@ install:
 - cd ../..
 - sleep 3
 script:
+- composer install
+- vendor/bin/phpstan analyse examples
 - cd src/
 - ./build.sh
 - make install

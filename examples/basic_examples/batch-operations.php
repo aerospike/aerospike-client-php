@@ -74,7 +74,7 @@ echo colorize("Getting the record metadata of keys 1-4 ≻", 'black', true);
 $start = __LINE__;
 $keys = array($key1, $key2, $key3, $key4);
 $res = $db->existsMany($keys, $metadata);
-if ($res == AEROSPIKE::OK) {
+if ($res === AEROSPIKE::OK) {
     echo success();
     var_dump($metadata);
 } else {
@@ -85,7 +85,7 @@ if (isset($args['a']) || isset($args['annotate'])) display_code(__FILE__, $start
 echo colorize("Getting 'name' bins of the inserted records ≻", 'black', true);
 $start = __LINE__;
 $res = $db->getMany($keys, $records, array('name'));
-if ($res == AEROSPIKE::OK) {
+if ($res === AEROSPIKE::OK) {
     echo success();
     var_dump($records);
 } else {
@@ -100,7 +100,7 @@ if (isset($args['c']) || isset($args['clean'])) {
     for ($i; $i < 4; $i++) {
         $res = $db->remove($keys[$i]);
     }
-    if ($res == Aerospike::OK) {
+    if ($res === Aerospike::OK) {
         echo success();
     } else {
         echo standard_fail($db);

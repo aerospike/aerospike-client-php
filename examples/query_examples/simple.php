@@ -67,7 +67,7 @@ foreach ($characters as $email => $age) {
     $key = $db->initKey("test", "characters", $i++);
     $put_vals = array("email" => $email, "age" => $age);
     $status = $db->put($key, $put_vals);
-    if ($status == Aerospike::OK) {
+    if ($status === Aerospike::OK) {
         echo success();
     } else {
         echo standard_fail($db);
@@ -79,7 +79,7 @@ if (isset($args['a']) || isset($args['annotate'])) display_code(__FILE__, $start
 echo colorize("Creating a secondary index on the 'age' bin of test.characters ≻", 'black', true);
 $start = __LINE__;
 $status = $db->addIndex("test", "characters", "age", "test_character_age_idx", Aerospike::INDEX_TYPE_DEFAULT, Aerospike::INDEX_NUMERIC);
-if ($status == Aerospike::OK) {
+if ($status === Aerospike::OK) {
     echo success();
 } else {
     echo standard_fail($db);
@@ -96,7 +96,7 @@ $status = $db->query("test", "characters", $where, function ($record) use (&$tot
     $total += (int) $record['bins']['age'];
     $not_centenarian++;
 }, array("email", "age"));
-if ($status == Aerospike::OK) {
+if ($status === Aerospike::OK) {
     echo success();
     echo "\nThe average age of employees who aren't centenarians is ".round($total / $not_centenarian)."\n";
 } else {
@@ -111,7 +111,7 @@ if (isset($args['a']) || isset($args['clean'])) {
         $key = $db->initKey("test", "characters", $i);
         $db->remove($key);
     }
-    if ($status == Aerospike::OK) {
+    if ($status === Aerospike::OK) {
         echo success();
     } else {
         echo standard_fail($db);
@@ -121,7 +121,7 @@ if (isset($args['a']) || isset($args['clean'])) {
     $start = __LINE__;
     echo colorize("Dropping the index ≻", 'black', true);
     $status = $db->dropIndex("test", "age_index");
-    if ($status == Aerospike::OK) {
+    if ($status === Aerospike::OK) {
         echo success();
     } else {
         echo standard_fail($db);

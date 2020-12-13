@@ -59,7 +59,7 @@ $start = __LINE__;
 $key = $db->initKey("test", "users", 1234);
 $put_vals = array("email" => "freudian.circuits@hal-inst.org", "name" => "Perceptron");
 $status = $db->put($key, $put_vals);
-if ($status == Aerospike::OK) {
+if ($status === Aerospike::OK) {
     echo success();
 } else {
     echo standard_fail($db);
@@ -71,7 +71,7 @@ $start = __LINE__;
 $key = $db->initKey("test", "users", 2345);
 $put_vals = array("email" => "roberto@hal-inst.org", "name" => "Roberto");
 $status = $db->put($key, $put_vals);
-if ($status == Aerospike::OK) {
+if ($status === Aerospike::OK) {
     echo success();
 } else {
     echo standard_fail($db);
@@ -117,7 +117,7 @@ if (isset($args['a']) || isset($args['clean'])) {
     $status = $db->remove($key);
     $key = $db->initKey("test", "users", 2345);
     $status = $db->remove($key);
-    if ($status == Aerospike::OK) {
+    if ($status === Aerospike::OK) {
         echo success();
     } else {
         echo standard_fail($db);

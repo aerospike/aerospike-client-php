@@ -71,7 +71,7 @@ for ($num_ops = 1; $num_ops <= $total_ops; $num_ops++) {
     }
 }
 $end = microtime(true);
-if ($write_fails == 0) {
+if ($write_fails === 0) {
     echo success();
 } else {
     echo standard_fail($db);

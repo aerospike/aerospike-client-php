@@ -10,7 +10,7 @@ $runtime = 0;
 $max_runtime = 0;
 foreach ($lines as $line) {
     $line = trim($line);
-    if ($line == '') continue;
+    if ($line === '') continue;
     list($l_pid, $l_total, $l_runtime, $l_tps, $l_reads, $l_reads_failed, $l_writes, $l_writes_failed) = explode("|", $line);
     $total += $l_total;
     $runtime += $l_runtime;
