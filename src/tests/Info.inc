@@ -182,7 +182,7 @@ class Info extends AerospikeTestCommon
     function testInfoPositiveForLatency()
     {
         try {
-            $status = $this->db->info('latency:hist=reads;slice=30;back=300;duration:120', $response, $this->test_host);
+            $status = $this->db->info('latencies:hist=reads;slice=30;back=300;duration:120', $response, $this->test_host);
             if(!empty($response))
                 return $status;
         } catch (ErrorException $e) {

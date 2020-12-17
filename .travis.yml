@@ -1,7 +1,7 @@
 language: php
 php:
 - 7.2
-- 7.3
+- 7.3.24
 os:
 - linux
 addons:
@@ -37,7 +37,7 @@ install:
 - cd ../..
 - sleep 3
 script:
-- cd src/
+- cd src
 - ./build.sh
 - make install
 - ../.travis/edit-php-ini.sh
